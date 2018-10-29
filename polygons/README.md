@@ -4,4 +4,4 @@ Please see the [main repo](https://github.com/FlorisSteenkamp/mat-examples) for 
 
 # StackBlitz
 
-[Live example](https://stackblitz.com/edit/typescript-db3p7j).
+[Live example](https://stackblitz.com/edit/typescript-jhukxd).

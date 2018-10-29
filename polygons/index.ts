@@ -1,6 +1,6 @@
 import {
     findMats,
-    Svg,
+    getPathsFromStr,
     Mat,
     traverseEdges
 } from 'flo-mat';
@@ -107,7 +107,7 @@ function drawMats(
 
         traverseEdges(cpNode, function(cpNode) {
             if (cpNode.isTerminating()) { return; }
-            let bezier = cpNode.matCurve;
+            let bezier = cpNode.matCurveToNextVertex;
             if (!bezier) { return; }
 
             let $path = document.createElementNS(NS, 'path');
@@ -138,7 +138,7 @@ for (let i=3; i<12; i++) {
     $path.setAttributeNS(null, "d", $d);
 
     // Get loops (representing the shape) from the path.
-    let loops = Svg.getPathsFromStr($d);
+    let loops = getPathsFromStr($d);
     
     /*
     let loops = [

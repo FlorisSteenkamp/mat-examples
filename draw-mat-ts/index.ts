@@ -1,6 +1,6 @@
 import './style.css'; // Import stylesheets
 
-import { findMats, Svg, Mat, traverseEdges, toScaleAxis } from 'flo-mat';
+import { findMats, getPathsFromStr, Mat, traverseEdges, toScaleAxis } from 'flo-mat';
 
 const NS = 'http://www.w3.org/2000/svg'; // Svg namespace
 
@@ -71,7 +71,7 @@ function drawMats(
 
         traverseEdges(cpNode, function(cpNode) {
             if (cpNode.isTerminating()) { return; }
-            let bezier = cpNode.matCurve;
+            let bezier = cpNode.matCurveToNextVertex;
             if (!bezier) { return; }
 
             let $path = document.createElementNS(NS, 'path');
@@ -129,7 +129,7 @@ function main() {
     setSvgShapePath($svg, svgPathStr);
 
     // Get loops (representing the shape) from some SVG path.
-    let bezierLoops = Svg.getPathsFromStr(svgPathStr);
+    let bezierLoops = getPathsFromStr(svgPathStr);
       
     // We could also just give an array of linear, quadratic or cubic beziers as 
     // below (all lines in this case). Note that in the below case there is only
