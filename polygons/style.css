@@ -1,0 +1,18 @@
+
+.shape-path {
+    fill: lightgray;
+    stroke: darkgray;
+    stroke-width: 0.1%;
+}
+
+.mat {
+    fill: none;
+    stroke: deeppink;
+    stroke-width: 0.2%;
+}
+
+.sat {
+    fill: none;
+    stroke: blue;
+    stroke-width: 0.2%;
+}

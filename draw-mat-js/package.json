@@ -1,0 +1,15 @@
+{
+  "name": "draw-mat-js",
+  "description": "Medial Axis Transform Demo - basic - JavaScript",
+  "version": "0.0.1",
+  "author": {
+    "name": "Floris Steenkamp"
+  },
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "flo-mat": "^0.1.4"
+  },
+  "devDependencies": {},
+  "scripts": {}
+}

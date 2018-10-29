@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+        "charset": "utf8",
+        "alwaysStrict": true,
+        "moduleResolution": "node",
+        "module": "commonJS",
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "lib": ["es2015", "dom"],
+        "target": "es2015",
+        "declaration": false,
+        "noEmitOnError": true,
+        "sourceMap": false,
+        "outDir": "./",
+        "allowJs": false
+    },
+    "include": [
+        "index.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}
