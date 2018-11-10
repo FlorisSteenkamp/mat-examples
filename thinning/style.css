@@ -1,0 +1,35 @@
+
+.top-item {
+    margin-left:10px;
+    margin-right:20px;
+    display: inline-block;
+}
+
+.shape-path {
+    fill: none;
+    stroke: darkgray;
+    stroke-width: 0.1%;
+}
+
+.shape-path-erode {
+    fill: blue;
+    filter: url(#erode);
+}
+
+.thin {
+    fill: blue;
+    stroke: none;
+    stroke-width: 0.2%;
+}
+
+.mat {
+    fill: none;
+    stroke: deeppink;
+    stroke-width: 0.2%;
+}
+
+.sat {
+    fill: none;
+    stroke: blue;
+    stroke-width: 0.2%;
+}
