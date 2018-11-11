@@ -4,7 +4,7 @@ const path = require('path');
 const projectRoot = 'c:/projects/';
 
 module.exports = {
-    entry: './src/index.ts',
+    entry: './index.ts',
     mode: 'development',
     module: {
         rules: [
