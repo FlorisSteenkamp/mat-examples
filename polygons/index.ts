@@ -2,7 +2,8 @@ import {
     findMats,
     getPathsFromStr,
     Mat,
-    traverseEdges
+    traverseEdges,
+    getCurveToNext
 } from 'flo-mat';
 
 const NS = 'http://www.w3.org/2000/svg'; // Svg namespace
@@ -107,7 +108,7 @@ function drawMats(
 
         traverseEdges(cpNode, function(cpNode) {
             if (cpNode.isTerminating()) { return; }
-            let bezier = cpNode.matCurveToNextVertex;
+            let bezier = getCurveToNext(cpNode);
             if (!bezier) { return; }
 
             let $path = document.createElementNS(NS, 'path');

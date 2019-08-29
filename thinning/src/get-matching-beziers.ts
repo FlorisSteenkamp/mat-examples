@@ -1,8 +1,8 @@
 
-import { CpNode, getBoundaryBeziersToNext } from 'flo-mat';
+import { CpNode, getBoundaryBeziersToNext, getCurveToNext } from 'flo-mat';
 import { toCubic, fromTo, length, getTAtLength } from 'flo-bezier3';
-
 import { MatchedBeziers } from './matched-beziers';
+
 
 /**
  * Returns a correspondence between boundary bezier curves and a medial axis
@@ -12,7 +12,7 @@ import { MatchedBeziers } from './matched-beziers';
  */
 function getMatchingBeziers(cpNode: CpNode): MatchedBeziers[] {
 
-    let medialBezier = toCubic(cpNode.matCurveToNextVertex);
+    let medialBezier = toCubic(getCurveToNext(cpNode));
 
     let boundaryBeziers = getBoundaryBeziersToNext(cpNode);
     if (!boundaryBeziers) { return []; }

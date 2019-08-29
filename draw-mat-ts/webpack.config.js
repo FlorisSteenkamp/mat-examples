@@ -18,11 +18,6 @@ module.exports = {
     },
     resolve: {
         extensions: [ '.tsx', '.ts', '.js'],
-        /*
-        alias: {
-            'flo-mat$': path.resolve(__dirname, projectRoot + 'mat/index.ts'),
-        }
-        */
     },
     output: {
         filename: 'bundle.js',

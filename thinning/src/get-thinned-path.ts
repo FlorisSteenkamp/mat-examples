@@ -2,6 +2,7 @@
 import { Mat, CpNode, Loop } from "flo-mat";
 
 import { getMatchingBeziers } from "./get-matching-beziers";
+import { toCubic } from "flo-bezier3";
 
 
 /**
@@ -30,9 +31,10 @@ function interpolate(
  */
 function getInterpolatedCurves(cpNode: CpNode, c: number) {
     return getMatchingBeziers(cpNode).map(curve => {
+        let boundaryBezier = toCubic(curve.boundaryBezier)
         return [0,1,2,3].map(i =>
             interpolate(
-                curve.boundaryBezier[i],
+                boundaryBezier[i],
                 curve.medialBezier[i], 
                 c
             )

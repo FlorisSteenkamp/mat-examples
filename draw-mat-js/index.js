@@ -2,7 +2,10 @@
 
 // var FloMat <-- Defined by <script> tag in index.html
 
-let { findMats, getPathsFromStr, Mat, traverseEdges, toScaleAxis } = FloMat;
+let { 
+    findMats, getPathsFromStr, Mat, traverseEdges, 
+    toScaleAxis, getCurveToNext
+} = FloMat;
 
 const NS = 'http://www.w3.org/2000/svg'; // Svg namespace
 
@@ -73,7 +76,7 @@ function drawMats(
 
         traverseEdges(cpNode, function(cpNode) {
             if (cpNode.isTerminating()) { return; }
-            let bezier = cpNode.matCurveToNextVertex;
+            let bezier = getCurveToNext(cpNode);
             if (!bezier) { return; }
 
             let $path = document.createElementNS(NS, 'path');
