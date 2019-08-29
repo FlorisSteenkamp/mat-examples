@@ -1,2 +1,6 @@
+.nyc_output
+.npm-debug.log
 node_modules
-three-d
+c.bat
+papers
+
