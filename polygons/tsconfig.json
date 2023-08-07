@@ -1,13 +1,10 @@
 {
     "compilerOptions": {
-        "charset": "utf8",
-        "alwaysStrict": true,
+        "strict": true,
         "moduleResolution": "node",
         "module": "commonJS",
-        "noImplicitAny": true,
-        "noImplicitThis": true,
-        "lib": ["es2015", "dom"],
-        "target": "es2015",
+        "lib": ["es2022", "dom"],
+        "target": "es2022",
         "declaration": false,
         "noEmitOnError": true,
         "sourceMap": false,

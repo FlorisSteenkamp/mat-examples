@@ -1,6 +1,8 @@
-
-import { CpNode, getBoundaryBeziersToNext, getCurveToNext } from 'flo-mat';
-import { toCubic, fromTo, length, getTAtLength } from 'flo-bezier3';
+import {
+    CpNode, getBoundaryBeziersToNext, getCurveToNext, isTerminating,
+    isSharp
+} from 'flo-mat';
+import { toCubic, fromTo, getTAtLength, totalLength } from 'flo-bezier3';
 import { MatchedBeziers } from './matched-beziers';
 
 
@@ -19,11 +21,11 @@ function getMatchingBeziers(cpNode: CpNode): MatchedBeziers[] {
 
     // If this is a leaf cpNode we return the boundary piece corresponding to 
     // the leaf untouched.
-    if (cpNode.isTerminating()) {
+    if (isTerminating(cpNode)) {
         // If the cpNode represents a sharp corner the boundary is just a point
         // and if it is a hole closer it is a dummy and the boundary does not
         // exist.
-        if (cpNode.isSharp() || cpNode.isHoleClosing) { 
+        if (isSharp(cpNode) || cpNode.isHoleClosing) { 
             return []; 
         }
 
@@ -34,11 +36,13 @@ function getMatchingBeziers(cpNode: CpNode): MatchedBeziers[] {
     }
 
     // Get bezier length function from t=0 to t=1.
-    let len = length([0,1]);
+    //let len = length([0,1]);
 
     // Filter zero length boundary beziers unless there is only one of them.
     boundaryBeziers = boundaryBeziers.length > 1
-        ? boundaryBeziers.filter(len)
+        //? boundaryBeziers.filter(len)
+        //? boundaryBeziers.filter((ps: number[][]) => length([0,1], ps))
+        ? boundaryBeziers.filter(b => totalLength(b))
         : boundaryBeziers
 
     // If the boundary consists of only one bezier curve then map the single 
@@ -57,12 +61,12 @@ function getMatchingBeziers(cpNode: CpNode): MatchedBeziers[] {
     // will be matched to its corresponding boundary bezier.
 
     // Get length of medial bezier
-    let lenMedial = len(medialBezier);
+    let lenMedial = totalLength(medialBezier);
     // Get length of boundary beziers
-    let lenBoundaries = boundaryBeziers.map(len);
+    let lenBoundaries = boundaryBeziers.map(b => totalLength(b));
     // Get total length of boundary beziers
     let lenBoundaryTotal = lenBoundaries.reduce(
-        (sum, length) => sum + length, 0
+        (sum, length_) => sum + length_, 0
     );
 
     // Initialize matched bezier array
@@ -77,7 +81,6 @@ function getMatchingBeziers(cpNode: CpNode): MatchedBeziers[] {
 
     // Create a function that return a piece of the medial bezier between two
     // specified t parameter values.
-    let fromTo_ = fromTo(medialBezier);
 
     // Iterate through all boundary beziers
     for (let i=0; i<boundaryBeziers.length; i++) {
@@ -96,7 +99,7 @@ function getMatchingBeziers(cpNode: CpNode): MatchedBeziers[] {
 
         matchedBeziers.push({
             boundaryBezier: boundaryBeziers[i],
-            medialBezier  : fromTo_(priorT, t)
+            medialBezier  : fromTo(medialBezier, priorT, t)
         });
 
         priorT = t;

@@ -26,9 +26,9 @@ import { createSelectOptions } from './src/create-select-options';
     let $gErode: SVGGElement = (document.getElementById('g-erode')) as any;
 
     // Get / create some more html elements
-    let $shapeSelect = document.getElementById('shape-select');
-    let $thinSlider  = document.getElementById('thin-slider');
-    let $erodeSlider = document.getElementById('erode-slider');
+    let $shapeSelect = document.getElementById('shape-select')!;
+    let $thinSlider  = document.getElementById('thin-slider')!;
+    let $erodeSlider = document.getElementById('erode-slider')!;
     createSelectOptions($shapeSelect, SVG_PATH_STRS);
 
     // Our path objects
@@ -129,7 +129,7 @@ import { createSelectOptions } from './src/create-select-options';
         let erodeRadius = thickestWidth * erodeFraction;
 
         // Update SVG morphology filter erosion radius
-        let $feErode = document.getElementById('fe-erode');
+        let $feErode = document.getElementById('fe-erode')!;
         $feErode.setAttributeNS(null, 'radius', erodeRadius.toString())
     }
 })();

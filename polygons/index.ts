@@ -3,7 +3,8 @@ import {
     getPathsFromStr,
     Mat,
     traverseEdges,
-    getCurveToNext
+    getCurveToNext,
+    isTerminating
 } from 'flo-mat';
 
 const NS = 'http://www.w3.org/2000/svg'; // Svg namespace
@@ -107,7 +108,7 @@ function drawMats(
         let fs = [,,getLinePathStr, getQuadBezierPathStr, getCubicBezierPathStr];
 
         traverseEdges(cpNode, function(cpNode) {
-            if (cpNode.isTerminating()) { return; }
+            if (isTerminating(cpNode)) { return; }
             let bezier = getCurveToNext(cpNode);
             if (!bezier) { return; }
 
@@ -115,7 +116,7 @@ function drawMats(
             $path.setAttributeNS(
                 null, 
                 "d", 
-                fs[bezier.length](bezier)
+                fs[bezier.length]!(bezier)
             );
             $path.setAttributeNS(null, "class", type);
 

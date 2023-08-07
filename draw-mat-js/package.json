@@ -8,7 +8,7 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "flo-mat": "^1.1.2"
+    "flo-mat": "^3.0.1"
   },
   "devDependencies": {},
   "scripts": {}

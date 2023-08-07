@@ -1,11 +1,7 @@
-'use strict'
-
-// var FloMat <-- Defined by <script> tag in index.html
-
-let { 
-    findMats, getPathsFromStr, Mat, traverseEdges, 
-    toScaleAxis, getCurveToNext
-} = FloMat;
+import {
+    findMats, getPathsFromStr, traverseEdges, toScaleAxis, getCurveToNext,
+    isTerminating
+} from './node_modules/flo-mat/browser/index.js';
 
 const NS = 'http://www.w3.org/2000/svg'; // Svg namespace
 
@@ -75,7 +71,7 @@ function drawMats(
         let fs = [,,getLinePathStr, getQuadBezierPathStr, getCubicBezierPathStr];
 
         traverseEdges(cpNode, function(cpNode) {
-            if (cpNode.isTerminating()) { return; }
+            if (isTerminating(cpNode)) { return; }
             let bezier = getCurveToNext(cpNode);
             if (!bezier) { return; }
 
